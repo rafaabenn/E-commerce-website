@@ -1,22 +1,32 @@
 import React, { useState } from 'react'
-
+import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
+import '../styles/article.css'
 
 export default function Article({data}) {
     
     
     console.log(data);
   return (
-    <div className="card mt-3 mb-3 ms-5 me-3" style={{width: "18rem", height: "32rem", overflow: "hidden"}} id="your-card-id">
-      <div className='tw-bg-red-500'>hi</div>
-        <img src={data.image} className="card-img-top" alt="Card Image" style={{height: "296.983px  "}}/>
-        <div className="card-body">
-            <h5 className="card-title">{data.title}</h5>
-            <p className="card-text">{data.description}</p>
-            <p className="card-text">Price: {data.price}MAD</p>
-            <a href="#" className="btn btn-link">Go somewhere</a>
-            <a href="#" className="btn btn-primary">Add to cart</a>
+    <Card   className="shadow-sm rounded-4 h-100">
+      <Card.Img variant="top" src={data.image} className="p-3 rounded-4 h-50 " />
+      <Card.Body  style={{ width: '300px', height: '200px' }} className="d-flex flex-column justify-content-between">
+       <div>
+       <Card.Title className="fs-5 ellipsis-multi-title ">{data.title}</Card.Title>
+        <Card.Text style={{height: '112px'}} className="product-description text-muted flex-grow-1 ellipsis-multi">
+          {data.description}
+        </Card.Text>
+       </div>
+       <div>
+       <div className="d-flex justify-content-between align-items-center mb-3">
+          <h5 className="mb-0 text-primary">${data.price}</h5>
         </div>
-
-    </div>
+        <div className="d-flex gap-2">
+          <Button variant="primary" className="flex-grow-1">Add to Cart</Button>
+          <Button variant="outline-secondary" className="flex-grow-1">View</Button>
+        </div>
+       </div>
+      </Card.Body>
+    </Card>
   )
 }
