@@ -22,14 +22,7 @@ export default function HeadBar() {
             <Nav.Link href="#action1">Home</Nav.Link>
            
             <NavDropdown title="Categories" id="navbarScrollingDropdown">
-              <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action4">
-                Another action
-              </NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action5">
-                Something else here
-              </NavDropdown.Item>
+             
             </NavDropdown>
           </Nav>
           <Form className="d-flex">
