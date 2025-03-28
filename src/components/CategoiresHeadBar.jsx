@@ -1,57 +1,26 @@
 import React from "react";
+import { NavDropdown } from 'react-bootstrap';
 
-export default function CategoiresHeadBar() {
+export default function CategoiresHeadBar({articles,setArticles}) {
     const FilterByCategoryHandler = (category) => {
-        setDisplayedPro(
-          products.filter((product) => product.category === category)
+        setArticles(
+            articles.filter((article) => article.category === category)
         );
     }
-  return (
-    <>
-      <a
-        className="nav-link dropdown-toggle"
-        href="#"
-        id="categoriesDropdown"
-        role="button"
-        data-bs-toggle="dropdown"
-        aria-expanded="false"
-      >
-        Categories
-      </a>
-      <ul className="dropdown-menu" aria-labelledby="categoriesDropdown">
-        <li>
-          <button
-            className=" btn dropdown-item"
-            onClick={() => FilterByCategoryHandler("men's clothing")}
-          >
+    return (
+        <NavDropdown title="Categories" id="categories-dropdown">
+          <NavDropdown.Item onClick={() => FilterByCategoryHandler("men's clothing")}>
             Men's clothing
-          </button>
-        </li>
-        <li>
-          <button
-            className=" btn dropdown-item"
-            onClick={() => FilterByCategoryHandler("women's clothing")}
-          >
+          </NavDropdown.Item>
+          <NavDropdown.Item onClick={() => FilterByCategoryHandler("women's clothing")}>
             Women's clothing
-          </button>
-        </li>
-        <li>
-          <button
-            className=" btn dropdown-item"
-            onClick={() => FilterByCategoryHandler("electronics")}
-          >
+          </NavDropdown.Item>
+          <NavDropdown.Item onClick={() => FilterByCategoryHandler("electronics")}>
             Electronics
-          </button>
-        </li>
-        <li>
-          <button
-            className=" btn dropdown-item"
-            onClick={() => FilterByCategoryHandler("jewelery")}
-          >
+          </NavDropdown.Item>
+          <NavDropdown.Item onClick={() => FilterByCategoryHandler("jewelery")}>
             Jewelery
-          </button>
-        </li>
-      </ul>
-    </>
-  );
+          </NavDropdown.Item>
+        </NavDropdown>
+      );
 }
