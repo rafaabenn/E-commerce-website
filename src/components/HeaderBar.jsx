@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
@@ -15,6 +15,8 @@ export default function HeadBar({
   setSearchText,
   setArticles,
 }) {
+
+
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container fluid>
@@ -49,6 +51,7 @@ export default function HeadBar({
             />
             <Button variant="outline-success">Search</Button>
           </Form>
+          <Button variant="outline-primary ms-2">Login</Button>
         </Navbar.Collapse>
       </Container>
     </Navbar>
