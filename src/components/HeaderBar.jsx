@@ -8,6 +8,7 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import "bootstrap/dist/css/bootstrap.min.css";
 import CategoiresHeadBar from "./CategoiresHeadBar";
 import Cart from "./Cart";
+import { useNavigate } from "react-router-dom";
 
 export default function HeadBar({
   articles,
@@ -15,6 +16,7 @@ export default function HeadBar({
   setSearchText,
   setArticles,
 }) {
+  const navigate = useNavigate();
 
 
   return (
@@ -51,7 +53,11 @@ export default function HeadBar({
             />
             <Button variant="outline-success">Search</Button>
           </Form>
-          <Button variant="outline-primary ms-2">Login</Button>
+          <Button variant="outline-primary ms-2"
+          onClick={() => navigate(`/login`)}
+          >
+          Login
+          </Button>
         </Navbar.Collapse>
       </Container>
     </Navbar>

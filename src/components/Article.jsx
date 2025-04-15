@@ -2,9 +2,11 @@ import React, { useState } from 'react'
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import '../styles/article.css'
+import { useNavigate } from 'react-router-dom';
+
 
 export default function Article({article, setArticles, articles}) {
-    
+    const navigate = useNavigate();
     
     console.log(article);
   return (
@@ -23,7 +25,13 @@ export default function Article({article, setArticles, articles}) {
         </div>
         <div className="d-flex gap-2">
           <Button variant="primary" className="flex-grow-1"  >Add to Cart</Button>
-          <Button variant="outline-secondary" className="flex-grow-1">View</Button>
+          <Button 
+          variant="outline-secondary" 
+          className="flex-grow-1"
+          onClick={() => navigate(`/product/${article.id}`,{ state: { article } })}
+          >
+          View
+          </Button>
         </div>
        </div>
       </Card.Body>

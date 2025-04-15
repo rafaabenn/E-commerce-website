@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
@@ -8,6 +9,7 @@ export default function Login() {
     username: "",
     password: "",
   });
+  const navigate = useNavigate();
 
   const handleLogin = (e) => {
     //johnd
