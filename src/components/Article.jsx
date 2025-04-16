@@ -24,7 +24,18 @@ export default function Article({article, setArticles, articles}) {
           <h5 className="mb-0 text-primary">${article.price}</h5>
         </div>
         <div className="d-flex gap-2">
-          <Button variant="primary" className="flex-grow-1"  >Add to Cart</Button>
+          <Button 
+            variant="primary" 
+            className="flex-grow-1"
+            onClick={() => {
+              const updated = articles.map(item =>
+                item.id === article.id ? { ...item, qty: item.qty + 1} : item
+              );
+              setArticles(updated);
+            }}
+          >
+            Add to Cart
+          </Button>
           <Button 
           variant="outline-secondary" 
           className="flex-grow-1"

@@ -22,7 +22,9 @@ export default function HeadBar({
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container fluid>
-        <Navbar.Brand href="#"> Your Shop</Navbar.Brand>
+        <Navbar.Brand>
+          Your Shop
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav
@@ -31,9 +33,9 @@ export default function HeadBar({
             navbarScroll
           >
             <Nav.Link
-              href="#action1"
               onClick={() => {
                 setArticles([...articles]);
+                navigate("/");
               }}
             >
               Home

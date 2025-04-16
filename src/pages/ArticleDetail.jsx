@@ -7,7 +7,7 @@ import Image from 'react-bootstrap/Image';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form' ;
 
-export default function ArticleDetail(){
+export default function ArticleDetail({ articles, setArticles }){
     const location = useLocation();
     const article = location.state?.article;
 
@@ -56,7 +56,14 @@ export default function ArticleDetail(){
                         <Button variant="outline-secondary" onClick={increaseQuantity}>+</Button>
                     </div>
 
-                    <Button>Add to Cart</Button>
+                    <Button onClick={() => {
+                        const updated = articles.map(item =>
+                            item.id === article.id ? { ...item, qty: item.qty + quantity} : item
+                        );
+                        setArticles(updated);
+                    }}>
+                        Add to Cart
+                    </Button>
                 </Col>
             </Row>
         </Container>
