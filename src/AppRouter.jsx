@@ -9,6 +9,8 @@ import {
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import ArticleDetail from "./pages/ArticleDetail";
+import SignUp from "./pages/SignUp";
+import Profile from "./pages/Profile";
 
 export default function AppRouter() {
   const location = useLocation();
@@ -26,7 +28,8 @@ export default function AppRouter() {
   }, []);
   return (
     <>
-      {location.pathname !== "/login" && (
+      {location.pathname !== "/login" && 
+      location.pathname !== "/signup" && (
         <HeaderBar
           user={user}
           articles={articles}
@@ -70,6 +73,14 @@ export default function AppRouter() {
         <Route
           path="/cart"
           element={<CartPage cart={cart} setCart={setCart} />}
+        />
+        <Route
+          path="/signup"
+          element={<SignUp />}
+        />
+        <Route
+          path="/profile"
+          element={<Profile />}
         />
       </Routes>
     </>
