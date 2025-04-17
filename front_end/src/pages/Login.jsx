@@ -24,7 +24,7 @@ export default function Login({userState,setUserState}) {
         navigate('/'); // Navigate back to home after successful login
       })
       .catch((error) => {
-        console.error("Login failed:", error);
+        console.error("Login failed:", error.response.data);
       });
   }
 

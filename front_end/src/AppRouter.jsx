@@ -9,6 +9,7 @@ import {
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import ArticleDetail from "./pages/ArticleDetail";
+import CheckoutPage from "./pages/CheckoutPage";  // Add this import
 
 export default function AppRouter() {
   const location = useLocation();
@@ -70,6 +71,10 @@ export default function AppRouter() {
         <Route
           path="/cart"
           element={<CartPage cart={cart} setCart={setCart} />}
+        />
+        <Route
+          path="/checkout"
+          element={<CheckoutPage cart={cart} setCart={setCart} />}
         />
       </Routes>
     </>
