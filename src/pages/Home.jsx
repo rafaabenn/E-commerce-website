@@ -2,8 +2,17 @@ import React, { useEffect, useState } from "react";
 import Articles from "../components/Articles";
 import axios from "axios";
 
-export default function Home({ articles, setArticles, searchText, setSearchText }) {
-  const [displayedArticles, setDisplayedArticles] = useState([]);
+export default function Home({
+  articles,
+  setArticles,
+  displayedArticles,
+  setDisplayedArticles,
+  searchText,
+  setSearchText,
+  cart,
+  setCart
+}) {
+  
 
   useEffect(() => {
     setDisplayedArticles(
@@ -35,7 +44,14 @@ export default function Home({ articles, setArticles, searchText, setSearchText 
   }, []);
 
   return (
-    <Articles articles={articles} setArticles={setArticles} /> 
+    <Articles
+      displayedArticles={displayedArticles}
+      setDisplayedArticles={setDisplayedArticles}
+      articles={articles}
+      setArticles={setArticles}
+      cart={cart}
+      setCart={setCart}
+    />
     /*<Articles articles={displayedArticles} setArticles={setDisplayedArticles} />*/
   );
 }

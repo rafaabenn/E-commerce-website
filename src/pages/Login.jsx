@@ -3,7 +3,7 @@ import { Eye, EyeOff } from "lucide-react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-export default function Login() {
+export default function Login({userState,setUserState}) {
   const [showPassword, setShowPassword] = useState(false);
   const [user, setUser] = useState({
     username: "",
@@ -20,6 +20,8 @@ export default function Login() {
         console.log("Login successful:", response.data);
         localStorage.setItem("token", response.data.token);
         localStorage.setItem("user", JSON.stringify(user));
+        setUserState(user);
+        navigate('/'); // Navigate back to home after successful login
       })
       .catch((error) => {
         console.error("Login failed:", error);

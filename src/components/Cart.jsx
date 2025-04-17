@@ -1,13 +1,13 @@
 import React, { useMemo } from "react";
 import { Link } from "react-router-dom";
-function Cart({ articles }) {
+function Cart({ cart }) {
   const numberInCart = useMemo(() => {
     let sumnbr = 0;
-    for (let i = 0; i < articles.length; i++) {
-      sumnbr += articles[i].qty;
+    for (let i = 0; i < cart.length; i++) {
+      sumnbr += cart[i].qty;
     }
     return sumnbr;
-  });
+  },[cart]);
   return (
     <>
       <Link to="/cart">
