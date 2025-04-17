@@ -10,6 +10,7 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import ArticleDetail from "./pages/ArticleDetail";
 import CheckoutPage from "./pages/CheckoutPage";  // Add this import
+import axios from "axios";
 
 export default function AppRouter() {
   const location = useLocation();
@@ -18,13 +19,27 @@ export default function AppRouter() {
   const [searchText, setSearchText] = useState("");
   const [cart, setCart] = useState([]);
   const [user, setUser] = useState(null);
+  const [loging, setLogin] = useState(false)
 
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
     if (storedUser) {
-      setUser(JSON.parse(storedUser));
+      const user = JSON.parse(storedUser)
+      setUser(user);
+      console.log(user)
+      const apiUrl = process.env.REACT_APP_API_URL;
+      axios.get(`${apiUrl}/carts/ByUsers?username=${user.username}&password=${user.password}`)
+      .then((res) => {
+        console.log(res.data);
+        axios.get(`${apiUrl}/articles/ByCart/${res.data.id}`)
+        .then((response) => {
+          console.log(response.data);
+          setCart(response.data);
+        })
+      })
+
     }
-  }, []);
+  }, [loging]);
   return (
     <>
       {location.pathname !== "/login" && (
@@ -56,7 +71,7 @@ export default function AppRouter() {
             />
           }
         />
-        <Route path="/login" element={<Login userState={user} setUserState={setUser} />} />
+        <Route path="/login" element={<Login userState={user} setUserState={setUser} setLogin={setLogin} />} />
         <Route
           path="/product/:id"
           element={

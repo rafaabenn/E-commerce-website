@@ -23,8 +23,9 @@ export default function Home({
   }, [searchText, articles]);
 
   useEffect(() => {
+    const apiUrl = process.env.REACT_APP_API_URL;
     axios
-      .get("https://fakestoreapi.com/products")
+      .get(`${apiUrl}/articles`)
       .then((response) => {
         const updatedArticles = response.data.map((item) => ({
           id: item.id,
