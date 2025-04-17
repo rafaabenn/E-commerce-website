@@ -1,11 +1,15 @@
 import React from "react";
 import { NavDropdown } from 'react-bootstrap';
+import { useNavigate } from "react-router-dom";
 
-export default function CategoiresHeadBar({articles,setArticles}) {
+export default function CategoiresHeadBar({articles,setDisplayedArticles}) {
+  const navigate = useNavigate();
     const FilterByCategoryHandler = (category) => {
-        setArticles(
+        setDisplayedArticles(
             articles.filter((article) => article.category === category)
         );
+        navigate('/');
+        
     }
     return (
         <NavDropdown title="Categories" id="categories-dropdown">

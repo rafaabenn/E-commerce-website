@@ -1,12 +1,18 @@
 import React, { useEffect, useState } from "react";
-import HeaderBar from "../components/HeaderBar";
 import Articles from "../components/Articles";
 import axios from "axios";
 
-export default function Home() {
-  const [articles, setArticles] = useState([]);
-  const [diplayedarticles, setDisplayedArticles] = useState([]);
-  const [searchText, setSearchText] = useState("");
+export default function Home({
+  articles,
+  setArticles,
+  displayedArticles,
+  setDisplayedArticles,
+  searchText,
+  setSearchText,
+  cart,
+  setCart
+}) {
+  
 
   useEffect(() => {
     setDisplayedArticles(
@@ -14,12 +20,13 @@ export default function Home() {
         article.title.toLowerCase().includes(searchText.toLowerCase())
       )
     );
-  }, [searchText]);
+  }, [searchText, articles]);
 
   useEffect(() => {
-    const articleHandler = (list) => {
-      const updatedArticles = list.map((item) => {
-        return {
+    axios
+      .get("https://fakestoreapi.com/products")
+      .then((response) => {
+        const updatedArticles = response.data.map((item) => ({
           id: item.id,
           title: item.title,
           price: item.price,
@@ -27,32 +34,24 @@ export default function Home() {
           image: item.image,
           description: item.description,
           qty: 0,
-        };
-      });
-      setArticles([...articles, ...updatedArticles]);
-      setDisplayedArticles([...diplayedarticles, ...updatedArticles]);
-    };
-    axios
-      .get("https://fakestoreapi.com/products")
-      .then((response) => {
-        articleHandler(response.data);
+        }));
+        setArticles(updatedArticles);
+        setDisplayedArticles(updatedArticles);
       })
       .catch((error) => {
         console.error(error);
       });
   }, []);
+
   return (
-    <div>
-      <HeaderBar
-        articles={articles}
-        setArticles={setDisplayedArticles}
-        searchText={searchText}
-        setSearchText={setSearchText}
-      />
-      <Articles
-        articles={diplayedarticles}
-        setArticles={setDisplayedArticles}
-      />
-    </div>
+    <Articles
+      displayedArticles={displayedArticles}
+      setDisplayedArticles={setDisplayedArticles}
+      articles={articles}
+      setArticles={setArticles}
+      cart={cart}
+      setCart={setCart}
+    />
+    /*<Articles articles={displayedArticles} setArticles={setDisplayedArticles} />*/
   );
 }
