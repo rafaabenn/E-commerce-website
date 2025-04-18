@@ -21,7 +21,7 @@ export default function AppRouter() {
   const [searchText, setSearchText] = useState("");
   const [cart, setCart] = useState([]);
   const [user, setUser] = useState(null);
-  const [loging, setLogin] = useState(false)
+  
 
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
@@ -41,7 +41,7 @@ export default function AppRouter() {
       })
 
     }
-  }, [loging]);
+  }, []);
   return (
     <>
       {location.pathname !== "/login" && 
@@ -74,7 +74,7 @@ export default function AppRouter() {
             />
           }
         />
-        <Route path="/login" element={<Login userState={user} setUserState={setUser} setLogin={setLogin} />} />
+        <Route path="/login" element={<Login userState={user} setUserState={setUser}  />} />
         <Route
           path="/product/:id"
           element={
@@ -100,7 +100,7 @@ export default function AppRouter() {
         />
         <Route
           path="/profile"
-          element={<Profile />}
+          element={<Profile user={user} />}
         />
       </Routes>
     </>
