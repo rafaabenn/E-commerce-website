@@ -10,6 +10,7 @@ export default function Login({userState,setUserState,setLogin}) {
     password: "",
   });
   const navigate = useNavigate();
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleLogin = (e) => {
     //johnd
@@ -26,7 +27,14 @@ export default function Login({userState,setUserState,setLogin}) {
         window.location.reload();
       })
       .catch((error) => {
-        console.error("Login failed:", error.response.data);
+        console.error("Login failed:", error)
+        if (error.status === 400) {
+          setErrorMessage("username and password are not provided.")
+        }else{
+          setErrorMessage(error.response.data)
+        }
+        
+        
       });
   }
 
@@ -70,12 +78,16 @@ export default function Login({userState,setUserState,setLogin}) {
           </div>
         </div>
 
-        <div className="d-flex flex-column align-items-center mt-3">
-          <button type="button" className="btn btn-primary w-100 mb-2" onClick={handleLogin}>
+        <div>
+          {errorMessage}
+        </div>
+
+        <div className="d-flex justify-content-between gap-2">
+          <button type="button" className="btn btn-primary px-5 py-1" onClick={handleLogin}>
             Login
           </button>
-          <button type="button" className="btn btn-link">
-            Forget password?
+          <button type="button" className="btn btn-primary px-5" onClick={() => navigate("/signup")}>
+            Sign up
           </button>
         </div>
       </div>

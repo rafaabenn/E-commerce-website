@@ -1,6 +1,7 @@
 import React, { useMemo } from "react";
 import { Link } from "react-router-dom";
 function Cart({ cart }) {
+
   const numberInCart = useMemo(() => {
     let sumnbr = 0;
     for (let i = 0; i < cart.length; i++) {
@@ -8,6 +9,7 @@ function Cart({ cart }) {
     }
     return sumnbr;
   },[cart]);
+  
   return (
     <>
       <Link to="/cart">

@@ -11,6 +11,8 @@ import Login from "./pages/Login";
 import ArticleDetail from "./pages/ArticleDetail";
 import CheckoutPage from "./pages/CheckoutPage";  // Add this import
 import axios from "axios";
+import SignUp from "./pages/SignUp";
+import Profile from "./pages/Profile";
 
 export default function AppRouter() {
   const location = useLocation();
@@ -42,7 +44,8 @@ export default function AppRouter() {
   }, [loging]);
   return (
     <>
-      {location.pathname !== "/login" && (
+      {location.pathname !== "/login" && 
+      location.pathname !== "/signup" && (
         <HeaderBar
           user={user}
           articles={articles}
@@ -90,6 +93,14 @@ export default function AppRouter() {
         <Route
           path="/checkout"
           element={<CheckoutPage cart={cart} setCart={setCart} />}
+        />
+        <Route
+          path="/signup"
+          element={<SignUp />}
+        />
+        <Route
+          path="/profile"
+          element={<Profile />}
         />
       </Routes>
     </>

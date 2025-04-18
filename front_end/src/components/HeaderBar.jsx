@@ -74,7 +74,9 @@ export default function HeadBar({
               id="nav-dropdown"
               className="ms-2"
             >
-              <NavDropdown.Item>Profile</NavDropdown.Item>
+              <NavDropdown.Item
+                onClick={() => navigate("/profile")}
+              >Profile</NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
             </NavDropdown>
