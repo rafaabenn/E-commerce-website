@@ -34,7 +34,7 @@ export default function HeadBar({
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container fluid>
-        <Navbar.Brand>Your Shop</Navbar.Brand>
+        <Navbar.Brand>Our Shop</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav
@@ -66,7 +66,7 @@ export default function HeadBar({
               value={searchText}
               onChange={(e) => setSearchText(e.target.value)}
             />
-            <Button variant="outline-success">Search</Button>
+
           </Form>
           {user ? (
             <NavDropdown
@@ -77,7 +77,6 @@ export default function HeadBar({
               <NavDropdown.Item
                 onClick={() => navigate("/profile")}
               >Profile</NavDropdown.Item>
-              <NavDropdown.Item>Orders</NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
             </NavDropdown>

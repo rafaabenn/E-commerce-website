@@ -99,14 +99,35 @@ export default function ArticleDetail({
                 </div>
               </div>
 
-              <Button
-                variant="success"
-                size="lg"
-                className="px-5"
-                onClick={() => addtoCartHandler(quantity)}
-              >
-                {user ? "Add to Cart" : "Login to Buy"}
-              </Button>
+              <div className="d-flex gap-3">
+                <Button
+                  variant="success"
+                  size="lg"
+                  className="px-5"
+                  onClick={() => addtoCartHandler(quantity)}
+                >
+                  {user ? "Add to Cart" : "Login to Buy"}
+                </Button>
+                
+                <Button
+                  variant="primary"
+                  size="lg"
+                  className="px-5"
+                  onClick={() => {
+                    if (!user) {
+                      navigate("/login");
+                      return;
+                    }
+                    // Add to cart and navigate to checkout
+                    if (!cart.some(item => item.id === article.id)) {
+                      setCart([...cart, { ...article, qty: quantity }]);
+                    }
+                    navigate("/checkout");
+                  }}
+                >
+                  Buy Now
+                </Button>
+              </div>
             </div>
           </Col>
         </Row>

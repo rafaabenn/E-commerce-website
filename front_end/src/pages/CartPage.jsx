@@ -1,7 +1,9 @@
 import React from "react";
 import { Button, Container, Row, Col, Image } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 export default function CartPage({ cart, setCart }) {
+  const navigate = useNavigate();
   const updateQty = (id, change) => {
     if (
       (change === -1 && cart.some((item) => item.id === id && item.qty === 1)) ||
@@ -87,7 +89,8 @@ export default function CartPage({ cart, setCart }) {
               Total: <span className="text-success">${total}</span>
             </h4>
             <div className="text-end">
-              <Button variant="success" size="lg" className="px-5">
+              <Button variant="success" size="lg" className="px-5" 
+              onClick={()=> {navigate('/checkout')}}>
                 Proceed to Checkout
               </Button>
             </div>
