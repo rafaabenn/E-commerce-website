@@ -1,16 +1,19 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { FaUser, FaEnvelope, FaLock, FaEdit, FaSave, FaTimes } from 'react-icons/fa';
+import axios from 'axios';
 
 function Profile() {
   const [isEditing, setIsEditing] = useState(false);
   const [userData, setUserData] = useState({
-    username: 'johndoe',
-    email: 'john.doe@example.com',
-    password: '********'
+    id: null,
+    username: null,
+    email: null,
+    password: null
   });
 
-  const [formData, setFormData] = useState(userData);
+  const [formData, setFormData] = useState({});
+
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -25,6 +28,31 @@ function Profile() {
     setUserData(formData);
     setIsEditing(false);
   };
+
+  useEffect( ()=>{
+    const apiUrl = process.env.REACT_APP_API_URL;
+    const user =JSON.parse(localStorage.getItem('user'));
+    console.log(user);
+    axios.get(`${apiUrl}/users/ByUsername/${user.username}`)
+    .then((res)=>{
+      setUserData({
+        id: res.data.id,
+        username: res.data.username,
+        email: res.data.email,
+        password: res.data.password
+      })
+      setFormData({
+        id: res.data.id,
+        username: res.data.username,
+        email: res.data.email,
+        password: res.data.password
+      })
+      console.log(res)
+      console.log("hello");
+    }).catch((error)=>{
+      console.error(error);
+    })
+  },[])
 
   return (
     <div className="container py-5">
@@ -64,7 +92,7 @@ function Profile() {
                       <FaLock className="text-primary me-2" />
                       <span className="fw-bold">Password</span>
                     </div>
-                    <div className="form-control bg-light">{userData.password}</div>
+                    <div className="form-control bg-light">**************</div>
                   </div>
 
                   <button 

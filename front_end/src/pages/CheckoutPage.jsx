@@ -10,40 +10,40 @@ export default function CheckoutPage({ cart, setCart }) {
     const validateForm = () => {
         const newErrors = {};
         
-        // Validate Full Name
+        
         if (shippingInfo.fullName.length < 3) {
             newErrors.fullName = 'Full name must be at least 3 characters';
         }
 
-        // Validate Phone
+       
         const phoneRegex = /^\d{10}$/;
         if (!phoneRegex.test(shippingInfo.phone)) {
             newErrors.phone = 'Please enter a valid 10-digit phone number';
         }
 
-        // Validate Address
+      
         if (shippingInfo.address.length < 5) {
             newErrors.address = 'Please enter a valid address';
         }
 
-        // Validate City
+       
         if (shippingInfo.city.length < 2) {
             newErrors.city = 'Please enter a valid city name';
         }
 
-        // Validate Postal Code
+       
         const postalRegex = /^\d{5}$/;
         if (!postalRegex.test(shippingInfo.postalCode)) {
             newErrors.postalCode = 'Please enter a valid 5-digit postal code';
         }
 
-        // Validate Card Number
+       
         const cardNumberRegex = /^\d{16}$/;
         if (!cardNumberRegex.test(shippingInfo.cardNumber)) {
             newErrors.cardNumber = 'Please enter a valid 16-digit card number';
         }
 
-        // Validate Card Expiry
+       
         const expiryRegex = /^(0[1-9]|1[0-2])\/([0-9]{2})$/;
         if (!expiryRegex.test(shippingInfo.cardExpiry)) {
             newErrors.cardExpiry = 'Please enter a valid expiry date (MM/YY)';
@@ -55,7 +55,7 @@ export default function CheckoutPage({ cart, setCart }) {
             }
         }
 
-        // Validate CVV
+       
         const cvvRegex = /^\d{3,4}$/;
         if (!cvvRegex.test(shippingInfo.cardCVV)) {
             newErrors.cardCVV = 'Please enter a valid CVV';
